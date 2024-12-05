@@ -1,16 +1,25 @@
-// Setup Cookies
-const expirationDate = new Date();
-const name = 'Daniel';
-const lastname = 'Mazzeu';
-const date = '20/02/1190';
+// import { createCookies, getCookie } from '../global/cookies.js';
 
-expirationDate.setFullYear(expirationDate.getFullYear() + 5); // 5 Years
-document.cookie = `name=${lastname}; expires=${expirationDate.toUTCString()}; path=/`;
-document.cookie = `lastname=${lastname}; expires=${expirationDate.toUTCString()}; path=/`;
-document.cookie = `date=${date}; expires=${expirationDate.toUTCString()}; path=/`;
+export function createCookies(cookies) {
+    const expirationDate = new Date();
+    expirationDate.setFullYear(expirationDate.getFullYear() + 5);
+  
+    for (const [name, value] of Object.entries(cookies)) {
+      document.cookie = `${name}=${value}; expires=${expirationDate.toUTCString()}; path=/`;
+    }
+  }
+  
+/* Usage
+const cookiesToSet = {
+    miniumbook_state: 'SP',
+    miniumbook_city: 'São Paulo',
+    miniumbook_condominium: 'Condomínio Alphaville'
+};
 
-// Get Cookies
-function getCookie(cname) {
+createCookies(cookiesToSet);
+*/
+
+export function getCookie(cname) {
     let name = cname + '=';
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
@@ -22,10 +31,6 @@ function getCookie(cname) {
     return '';
 }
 
-window.onload = function() {
-    const cookie = getCookie('cookiename');
-  
-    if (cookie) {
-        alert(cookie);
-    }
-};
+/* Usage 
+getCookie('cookieName");
+*/
