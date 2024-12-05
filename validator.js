@@ -10,6 +10,7 @@ export class Validator {
         this.emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         this.dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
         this.timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+        this.phoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;        
     }
 
     validateFullName(fullName) {
@@ -23,6 +24,10 @@ export class Validator {
 
     validateDecimal(decimal) {
         return this.decimalRegex.test(decimal);
+    }
+
+    validatePhone(phone) {
+        return this.phoneRegex.test(phone);
     }
 
     validateCPF(cpf) {
