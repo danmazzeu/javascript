@@ -10,7 +10,6 @@ export class Validator {
         this.emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         this.dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
         this.timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-        this.emptyRegex = /^\s*\S+\s*$/;
     }
 
     validateFullName(fullName) {
@@ -57,8 +56,8 @@ export class Validator {
         return this.timeRegex.test(time);
     }
 
-    validateNotEmpty(value) {
-        return this.emptyRegex.test(value);
+    validateNull(value) {
+        return value == 'null' ?  true : false;
     }
 }
 
@@ -77,9 +76,9 @@ btn.addEventListener('click', () => {
     const validator = new Validator();
 
     if (validator.validateNumber(value)) {
-        alert('ok');
+        alert('Valid number');
     } else {
-        alert('error');
+        alert('Invalid number');
     }
 });
 */
