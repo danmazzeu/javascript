@@ -1,4 +1,4 @@
-// import { createCookies, getCookie } from '../global/cookies.js';
+// import { createCookies, getCookies, deleteCookies } from '../global/cookies.js';
 
 export function createCookies(cookies) {
     const expirationDate = new Date();
@@ -32,15 +32,11 @@ export function getCookies(cname) {
 getCookie('cookieName");
 */
 
-export function deleteCookies(cookies) {
-    const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() - 1);
-  
-    for (const name of Object.keys(cookies)) {
-        document.cookie = `${name}=; expires=${expirationDate.toUTCString()}; path=/`;
-    }
+export function deleteCookies(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 }
 /* Usage 
-const cookiesToDelete = ['miniumbook_state', 'miniumbook_city', 'miniumbook_condominium'];
-deleteCookies(cookiesToDelete);
+deleteCookies('miniumbook_state');
+deleteCookies('miniumbook_city');
+deleteCookies('miniumbook_condominium');
 */
